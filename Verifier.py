@@ -66,11 +66,11 @@ def VerifyInput(input_file):
         return False
 
     # Verify first Two lines only have one number each
-    if len(input_list[0].strip()) != 1:
+    if len(input_list[0].split()) != 1:
         print("Subset count has {} numbers.".format(len(input_list[0].strip())))
         print("Subset count should only have one number")
         return False
-    if len(input_list[1].strip()) != 1:
+    if len(input_list[1].split()) != 1:
         print("Subset count has {} numbers.".format(len(input_list[1].strip())))
         print("Subset count should only have one number")
         return False
