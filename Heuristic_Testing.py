@@ -21,17 +21,20 @@ def BasicHeuristic(input_file, output_file="BasicHeuristic_Output"):
     unique = set()
 
     # Sort List by (weight/items in subset)
-    subsetsSorted = sorted(subsets, key=lambda x: (x[1]/len(x[0]), x[1]))
+    subsetsSorted = sorted(subsets, key=lambda x: (x[1] / len(x[0]), x[1]))
 
     # pop first item from sorted list until all unique elements are accounted for
     while len(unique) != uniqueSubsets:
         temp = subsetsSorted.pop(0)
-        output_subsets.append(subsets.index(temp)+1)
+        output_subsets.append(subsets.index(temp) + 1)
         output_weight += temp[1]
         unique.update(temp[0])
 
     # Outputs Weight and Used Elements
     output_subsets.sort()
-    print(output_weight)
-    print(output_subsets)
-
+    with open(output_file, "w") as f:
+        f.write(str(output_weight) + "\n")
+        for i in range(len(output_subsets)):
+            f.write(str(output_subsets[i]))
+            if i < len(output_subsets) - 1:
+                f.write(" ")
