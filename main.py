@@ -4,7 +4,9 @@ import Heuristic_Testing
 
 
 def main():
-    Heuristic_Testing.BasicHeuristic("example_input")
+    RandomInput.createRandomInputFile(500, 1000)
+    Heuristic_Testing.BasicHeuristic("randomInputFile")
+    Heuristic_Testing.BasicHeuristicPlus("randomInputFile")
 
 
 if __name__ == "__main__":
