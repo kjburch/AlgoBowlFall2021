@@ -76,16 +76,19 @@ def BasicHeuristicPlus(input_file, output_file="BasicHeuristicPlus_Output"):
         subsetsSorted = sorted(subsetsSorted, key=lambda x: (x[1] / x[2], x[1]))
         temp = subsetsSorted.pop(0)
 
-        # Change unique elements
-        for sub in subsetsSorted:
-            for e in temp[0]:
-                if sub[0].count(e) > 1:
-                    sub[2] = sub[2]-1
-
-        # Add chosen Subset to Output Variables
-        output_subsets.append(subsets.index(temp) + 1)
-        output_weight += temp[1]
+        # ensure there was actually a new element
+        un = len(unique)
         unique.update(temp[0])
+        if un != len(unique):
+            # Change unique elements in list
+            for sub in subsetsSorted:
+                for e in temp[0]:
+                    if sub[0].count(e) > 1:
+                        sub[2] = sub[2]-1
+
+            # Add chosen Subset to Output Variables
+            output_subsets.append(subsets.index(temp) + 1)
+            output_weight += temp[1]
 
     # Outputs Weight and Used Elements
     output_subsets.sort()
