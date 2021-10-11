@@ -1,4 +1,3 @@
-
 my_file = open("Input.txt", "r")
 
 data = []
