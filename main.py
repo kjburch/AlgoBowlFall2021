@@ -4,7 +4,7 @@ import Verifier
 import RandomInput
 import Heuristic_Testing
 
-a = "example_input"
+a = "inputs/input_group317.txt"
 b = "randomInputFile"
 c = "InputWithVariations.txt"
 
@@ -12,7 +12,7 @@ c = "InputWithVariations.txt"
 def main():
     #Heuristic_Testing.BasicHeuristic(f)
     Verifier.VerifyInput(a)
-    Verifier.VerifyOutput(a, "example_output")
+    Verifier.VerifyOutput(a, "outputs/input_group317.txt")
     #print("\n")
 
 
