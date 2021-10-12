@@ -32,14 +32,14 @@ def VerifyOutput(input_file, output_file):
     union = set()
     actualWeight = 0
     for id in output_list[1].split():
-        union.update(subsets[int(id) - 1][0])
-        actualWeight += subsets[int(id) - 1][1]
+        union.update(subsets[int(id)][0])
+        actualWeight += subsets[int(id)][1]
 
     # False if ids do not fully cover set
     # False if Output File Weight does not equal actual weight
     if len(union) != uniqueSubsets:
-        print("Output file subsets contain {} unique Elements")
-        print("Line 1 of the input file states there should be {} unique Elements to fully cover the Set".format(len(union), uniqueSubsets))
+        print("Output file subsets contain {} unique Elements".format(len(union)))
+        print("Line 1 of the input file states there should be {} unique Elements to fully cover the Set".format(uniqueSubsets))
         return False
     if actualWeight != int(output_list[0]):
         print("The Total Weight reported by the Output file is {}.".format(output_list[0]))
