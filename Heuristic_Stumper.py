@@ -24,14 +24,14 @@ def stumper_generator():
             if random.randint(0, 8) == 3:
                 s_temp.append(s_full[j])
         temp_set.update(s_temp)
-        S.append((random.randint(len(s_temp)*3, 1000), s_temp.copy()))
+        S.append((random.randint(len(s_temp), 1000), s_temp.copy()))
 
     last = []
     for i in range(0, len(s_full)):
         if not s_full[i] in temp_set:
             last.append(s_full[i])
 
-    S.append((random.randint(len(last)*3, 1000) * len(last), last.copy()))
+    S.append((random.randint(len(last), 1000), last.copy()))
 
     # Find the total weight of the split and declare it the best
     bestSet = S.copy()
@@ -46,7 +46,7 @@ def stumper_generator():
             if random.randint(0, 8) == 5:
                 s_temp.append(s_full[j])
         temp_set.update(s_temp)
-        S.append((random.randint(len(s_temp)*3, 1000), s_temp.copy()))
+        S.append((random.randint(len(s_temp)*5, 1000), s_temp.copy()))
 
     random.shuffle(S)
 
@@ -81,7 +81,7 @@ def stumper_generator():
 
     if basic_best == plus_best or plus_best == radix_best or radix_best == basic_best:
         os.remove(filename)
-        print("FAILURE: " + str(bestWeight < plus_best) + " " + str(bestWeight < basic_best) + " " + str(bestWeight < radix_best))
+        print("FAILURE: " + str(bestWeight) + " " + str(plus_best) + " " + str(basic_best) + " " + str(radix_best))
     elif bestWeight < plus_best and bestWeight < basic_best and bestWeight < radix_best:
         print(bestWeight, basic_best, plus_best, radix_best)
         print("-------------------------SUPER--------SUCCESS-----------------")
@@ -97,6 +97,8 @@ def stumper_generator():
     else:
         print(bestWeight, basic_best, plus_best, radix_best)
         print("--------SUCCESS-------")
+        if random.randint(0,5)!=3:
+            os.remove(filename)
 
 
 while True:

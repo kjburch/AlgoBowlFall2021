@@ -32,8 +32,8 @@ def VerifyOutput(input_file, output_file):
     union = set()
     actualWeight = 0
     for id in output_list[1].split():
-        union.update(subsets[int(id)][0])
-        actualWeight += subsets[int(id)][1]
+        union.update(subsets[int(id)-1][0])
+        actualWeight += subsets[int(id)-1][1]
 
     # False if ids do not fully cover set
     # False if Output File Weight does not equal actual weight
