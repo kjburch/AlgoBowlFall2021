@@ -7,6 +7,7 @@
 #include <limits>
 #include <set>
 #include <algorithm>
+#include <thread>
 
 using namespace std;
 
@@ -23,6 +24,7 @@ int constrain(int n, int l, int h) {
 }
 
 int main_fun(string inputFile, string outputFile) {
+srand(time(NULL));
     int universal_length = 0;
     int num_subsets = 0;
 
@@ -50,18 +52,14 @@ int main_fun(string inputFile, string outputFile) {
         ss2 >> weights[i];
     }
     
-    for (auto w : weights) {
-        cout << w << endl;
-    }
 
 
         
     int best_weight = numeric_limits<int>::max();
     vector<int> best_sets;
-    default_random_engine generator;
+    default_random_engine generator(time(NULL));
     
 
-    int counter = 0;
     while (1) {
         //int k=randint(1, constrain(ub, 1, num_subsets))
         vector<bool> u(universal_length, false);
@@ -111,11 +109,16 @@ int main_fun(string inputFile, string outputFile) {
             best_sets = ss;
             cout << best_weight << endl;
             for (int i : best_sets) {
-                cout << i << ", ";
+                cout << i+1 << " ";
             }
             cout << endl;
-
-            counter = 0;
+            ofstream file;
+            file.open(outputFile, ios::trunc);
+            file << best_weight << endl;
+            for (int i : best_sets) {
+                file << i + 1 << " ";
+            }
+            file.close();
         }
         
     }
@@ -125,5 +128,12 @@ int main_fun(string inputFile, string outputFile) {
     
      
 int main() {
-    main_fun("InputWithVariations.txt", "rand_output");
+    
+    for (int i = 297; i <= 339; ++i) {
+        cout << "got here";
+        string ifName = "/mnt/d/Downloads/all_inputs/inputs/input_group" + to_string(i) + ".txt";
+        string ofName = "/mnt/d/Downloads/all_outputs/output_group" + to_string(i) + ".txt";
+        thread t(main_fun, ifName, ofName);
+    }
+    //main_fun("Stumper_Valid_Output/16262-00'49'22", "rand_output");
 }
